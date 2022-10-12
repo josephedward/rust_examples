@@ -5,7 +5,6 @@ pub fn get_concatenation(nums: Vec<i32>) -> Vec<i32> {
 }
 
 fn reverseArray(a: &[i32]) -> Vec<i32> {
-
     let mut b = Vec::new();
     for i in (0..a.len()).rev() {
         b.push(a[i]);
@@ -177,8 +176,6 @@ fn is_valid_ip_part(s: &str) -> bool {
 }
 
 fn rotateLeft(d: i32, arr: &[i32]) -> Vec<i32> {
-    let mut result = Vec::new();
-
     //clone the array into something mutable
     let mut arr = arr.to_vec();
 
@@ -188,3 +185,134 @@ fn rotateLeft(d: i32, arr: &[i32]) -> Vec<i32> {
     //return the array
     arr
 }
+
+fn print_type_of<T>(_: &T) {
+    println!("{}", std::any::type_name::<T>())
+}
+
+pub fn most_words_found(sentences: Vec<String>) -> i32 {
+    let mut count = 0;
+    for x in sentences.into_iter().map(|x| String::from(x).split(' ').count()) {
+        if x > count {
+            count = x;
+        }
+    }
+    count as i32
+}
+
+pub fn is_palindrome(x: i32) -> bool {
+    let mut x = x;
+    for i in 0..=x.to_string().len() / 2 {
+        if
+            x.to_string().chars().nth(i).unwrap() !=
+            x
+                .to_string()
+                .chars()
+                .nth(x.to_string().len() - 1 - i)
+                .unwrap()
+        {
+            return false;
+        }
+    }
+    true
+}
+
+fn solution(num: i32) -> i32 {
+    let mut sum = 0;
+    for x in 1..num {
+        if x % 3 == 0 {
+            sum = sum + x;
+            continue;
+        }
+        if x % 5 == 0 {
+            sum = sum + x;
+            continue;
+        }
+    }
+    sum
+}
+
+fn solution(num: i32) -> i32 {
+    (1..num).filter(|x| (x % 3 == 0 || x % 5 == 0)).sum()
+}
+
+fn solution(num: i32) -> i32 {
+    let mut sum = 0;
+    for i in 1..num {
+        if i % 3 == 0 || i % 5 == 0 {
+            sum += i;
+        }
+    }
+    sum
+}
+
+match io::stdin().read_line(&mut user_input) {
+    Ok(_) => (),
+    Err(_e) => {
+        println!("error: {}", _e);
+        continue;
+    }
+}
+
+if let Err(e) = io::stdin().read_line(&mut user_input) {
+    eprintln!("error: {}", e);
+    continue;
+}
+let num: i64 = match user_input.trim().parse::<i64>() {
+    Ok(n) => n,
+    Err(_e) => {
+        trim_newline(&mut user_input); // remove trailing newline
+        println!("'{}' is not a valid number, full error: {}", user_input, _e);
+        continue;
+    }
+};
+
+fn zeros(n: u64) -> u64 {
+    let mut n = n.clone();
+    let mut sum = 0;
+    //      A trailing zero is always produced by prime factors 2 and 5.
+    //      if we count 5s in prime factors, we are done
+    while n >= 5 {
+        n = n / 5;
+        sum += n;
+    }
+    sum
+}
+
+fn zeros(n: u64) -> u64 {
+    //     println!("N -> {}", n);
+    if n == 0 {
+        0
+    } else {
+        n / 5 + zeros(n / 5)
+    }
+}
+
+
+//declare empty vec of i32
+let mut vec: Vec<i32> = Vec::new();
+
+
+pub fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {
+    
+    let mut i = 0;
+    while i < nums.len() - 1 {
+        if nums[i] == nums[i + 1] {
+            nums.remove(i);
+        } else {
+            i += 1;
+        }
+    }
+    nums.len() as i32
+}
+
+pub fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {
+    nums.dedup();
+    return nums.len() as i32
+    }
+
+    pub fn remove_element(nums: &mut Vec<i32>, val: i32) -> i32 {
+        nums.retain(|&x| x != val);
+        
+        nums.len() as i32
+ }
